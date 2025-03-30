@@ -14,6 +14,10 @@ app.get("/", (req, res) => {
     return res.status(201).json({msg: "Bevenuto nel mio Api."});
 })
 
+app.get("/doc", (req, res) => {
+    return res.status(201).json({ msg: "Questo è un Progetto fatto per lo scopo dimostrativo, quindi in qualsiasi caso può variare e aggiornarsi nel tempo con le varie modifiche."});
+})
+
 app.use("/api", routes);
 
 app.listen(port, () => {return console.log(`>> Ecco il server in esecuzione: http://localhost:${port}/`)});
