@@ -37,8 +37,24 @@ const QueryPostsTagsSearch = (req, res) =>{
     return res.status(201).json({ msg: "Ecco i post trovati con i tag:", posts: tags_posts_finder });
 }
 
+const DeleteIDPostsLists =  (req, res) =>{
+    const params_id = parseInt(String(req.params.id).slice(-1));
+    // console.log(params_id);
+    if (isNaN(params_id)) {
+        return res.send(401).json({ msg: "Il Parametro non è un numero, mi dispiace."});
+    }
+    const finder_posts = posts.findIndex( post => post.id === params_id);
+    // console.log(finder_posts);
+    if (!finder_posts) {
+        return res.status(404).json({ msg: "Post non è stato trovato"});
+    }
+    posts.splice(finder_posts, finder_posts);
+    return res.status(201).json({ msg: "L'operazione è stata eseguita con successo"});
+}
+
 export {
     ShowPosts,
     IdPostsSearch,
-    QueryPostsTagsSearch
+    QueryPostsTagsSearch,
+    DeleteIDPostsLists
 }
