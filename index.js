@@ -8,6 +8,7 @@ const app = express();
 const port = 8000;
 
 app.use(express.static("public"));
+app.use(express.json());
 
 app.get("/", (req, res) => {
     console.log("Risposta inviata con successo.");
