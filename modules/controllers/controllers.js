@@ -1,11 +1,11 @@
 
 // Funzioni delle rotte corrispondenti:
 
-import express from "express"
-import posts from "../posts.mjs"
+const express = require("express");
+const posts  = require("../posts");
 
 const ShowPosts = (req, res) =>{
-    return res.status(201).json({msg: "Benvenuto nella lista dei Post:", posts: posts});
+    return res.status(200).json({msg: "Benvenuto nella lista dei Post:", posts: posts});
 }
 
 const IdPostsSearch = (req, res) => {
@@ -21,7 +21,7 @@ const IdPostsSearch = (req, res) => {
     }
 
     // console.log(finder_posts);
-    return res.status(201).json({ msg: "Ecco il Post che hai cercato:", post: finder_posts});
+    return res.status(200).json({ msg: "Ecco il Post che hai cercato:", post: finder_posts});
 }
 
 const QueryPostsTagsSearch = (req, res) =>{
@@ -34,7 +34,7 @@ const QueryPostsTagsSearch = (req, res) =>{
     if (tags_posts_finder.length === 0) {
         return res.status(401).json({ msg: "I post con i tag usati non esistono"});
     }
-    return res.status(201).json({ msg: "Ecco i post trovati con i tag:", posts: tags_posts_finder });
+    return res.status(200).json({ msg: "Ecco i post trovati con i tag:", posts: tags_posts_finder });
 }
 
 const DeleteIDPostsLists =  (req, res) =>{
@@ -49,7 +49,7 @@ const DeleteIDPostsLists =  (req, res) =>{
         return res.status(404).json({ msg: "Post non è stato trovato"});
     }
     posts.splice(finder_posts, finder_posts);
-    return res.status(201).json({ msg: "L'operazione è stata eseguita con successo"});
+    return res.status(200).json({ msg: "L'operazione è stata eseguita con successo"});
 }
 
 const AddPostinList = (req, res) => {
@@ -57,7 +57,7 @@ const AddPostinList = (req, res) => {
     // console.log(body);
     const posts_add = { id: posts[ posts.length - 1].id + 1, ...body};
     posts.push(posts_add);
-    return res.status(201).json({ msg: "Il post è stato aggiunto con successo"});
+    return res.status(200).json({ msg: "Il post è stato aggiunto con successo"});
 }
 
 const ModifiedPostsinList =  (req, res) =>{
@@ -72,10 +72,10 @@ const ModifiedPostsinList =  (req, res) =>{
         return res.status(404).json({ msg: "Il post corrispondente non esiste."});
     }
     posts[finder_post] = {...posts[finder_post], ...body};
-    return res.status(201).json({ msg: "Il post è stato aggiornato, con successo."});
+    return res.status(200).json({ msg: "Il post è stato aggiornato, con successo."});
 }
 
-export {
+module.exports = {
     ShowPosts,
     IdPostsSearch,
     QueryPostsTagsSearch,

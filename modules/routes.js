@@ -1,9 +1,9 @@
 
 // Creazione delle rotte del sito in questione
 
-import express from "express"
-import { ShowPosts , IdPostsSearch, QueryPostsTagsSearch, DeleteIDPostsLists, AddPostinList, ModifiedPostsinList} from "./controllers/controllers.mjs";
-import posts from "./posts.mjs";
+const express =  require("express");
+const { ShowPosts , IdPostsSearch, QueryPostsTagsSearch, DeleteIDPostsLists, AddPostinList, ModifiedPostsinList} = require("./controllers/controllers.js");
+const posts = require("./posts.js");
 
 const routes = express.Router();
 
@@ -31,4 +31,4 @@ routes.post("/posts/all", AddPostinList);
 
 routes.patch("/posts/all/:id", ModifiedPostsinList);
 
-export default routes
+module.exports = routes
