@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
     return res.status(200).json({msg: "Bevenuto nel mio Api."});
 })
 
-app.get("/doc", (req, res) => {
+app.get("/doc", (req, res, error) => {
     return res.status(200).json({ msg: "Questo è un Progetto fatto per lo scopo dimostrativo, quindi in qualsiasi caso può variare e aggiornarsi nel tempo con le varie modifiche."});
 })
 
